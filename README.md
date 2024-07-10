@@ -51,6 +51,23 @@ CREATE TABLE `repayment_info` (
 )
 
 
+Postman Collection: Link is shared in mail. Can't share here due to access violation since it has access key
 
+There are 4 api's: 
+All require Authorization(in Headers)(Key: Authorization, Value:user_id/admin_id)
+1. Create Loan: This api is used to create loan
+2. Approve Loan: This api is used to approve loan(by admin)
+3. View Loan: This api is used to view loan including OutstandingBalance and IsDelinquent
+4. Add Repayment: This api is used to add repayment
 
+There are 2 cron's:
+Both the cron's are running at midnight
+1. UpdateRepaymentStatusFromLockedToPending: 
+  a. This is used to update the status of the repayment to PENDING state for the term which needs to enabled for this week
+2. UpdateRepaymentStatusFromPendingToSkipped: 
+  a. This is used to update the status of the repayment to SKIPPED state for the term which is not paid by the user. 
+  b. Also it creates a new entry of repayment for the corresponding week in last. 
+  c. Also checks whether this loan is Delinquent or not. If delinquent, it will update it in billing_info table
 
+  Test Cases:
+  Very basic unit test cases are written to ensure individual parts of the software function correctly and reliably.
