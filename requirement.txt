@@ -1,0 +1,4 @@
+Pre-requisite to run the service
+
+1. Golang
+2. MYSQL
